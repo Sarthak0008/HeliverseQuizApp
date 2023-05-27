@@ -16,7 +16,7 @@ import com.heliverse.exception.QuizException;
 import com.heliverse.service.QuizService;
 
 @RestController
-@RequestMapping("/heliversequizzes")
+// @RequestMapping("/heliversequizzes")
 public class QuizController {
 	
 	@Autowired
