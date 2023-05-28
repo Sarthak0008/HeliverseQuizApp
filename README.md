@@ -1,8 +1,8 @@
 # HeliverseQuizApp
-# Base Url - heliversequizapp-production.up.railway.app
+# Base Url - heliversequizapp-production.up.railway.app/heliversequizzes
 # create a Quiz
 
-   - URL: https://heliversequizapp-production.up.railway.app/create
+   - URL: https://heliversequizapp-production.up.railway.app/heliversequizzes/create
 
    - Method: POST
 
@@ -29,7 +29,7 @@
         "status": "INACTIVE"
     }
  ###  Get Active Quizzes
-   - URL: https://heliversequizapp-production.up.railway.app/active
+   - URL: https://heliversequizapp-production.up.railway.app/heliversequizzes/active
 
    - Method: GET
 
@@ -51,7 +51,7 @@
     ]
     
    ### Get Quiz Result
-   -  URL: https://heliversequizapp-production.up.railway.app/{id}/result
+   -  URL: https://heliversequizapp-production.up.railway.app/heliversequizzes/{id}/result
    -  Method: GET
    - Description: Get the result of a quiz by its ID.
    - Path Variable:
