@@ -22,7 +22,7 @@ public class QuizController {
 	@Autowired
 	private QuizService quizService;
 	
-	@PostMapping
+	@PostMapping("/create")
 	public Quiz createQuiz(@RequestBody Quiz quiz) throws QuizException {
 		return quizService.createQuiz(quiz);
 	}
