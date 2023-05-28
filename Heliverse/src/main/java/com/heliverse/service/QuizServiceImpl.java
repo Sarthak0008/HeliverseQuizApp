@@ -21,19 +21,23 @@ public class QuizServiceImpl implements QuizService{
 	
 	@Autowired
 	private QuizRepository quizRepository;
+	
 	@Override
 	public Quiz createQuiz(Quiz quiz) throws QuizException {
-	//	I have set the QuizStatus active again
 		quiz.setStatus(QuizStatus.INACTIVE);
 		return quizRepository.save(quiz);
 	}
 
 	@Override
 	public List<Quiz> getActiveQuiz() throws QuizException {
+		
 		List<Quiz> quizzes=quizRepository.findActiveQuizzes();
-		if(quizzes.isEmpty()){
+		if(quizzes.isEmpty())
+		{
 			throw new QuizException("No Active Quiz found");
-		}else{
+		}
+		else
+		{
 			return quizzes;
 		}
 	}
@@ -58,14 +62,14 @@ public class QuizServiceImpl implements QuizService{
 			LocalDateTime ldt=LocalDateTime.now();
 			long duration=Duration.between(q.getEndDate(),ldt).toMinutes();
 			if(duration>5){
-				Quiz answer = quiz.get();
-				QuizAnswerDto qad=new QuizAnswerDto();
-				qad.setQuestion(answer.getQuestion());
-				qad.setOptions(answer.getOptions());
-				qad.setAnswer(answer.getOptions().get(answer.getRightAnswerIndex()));
-				return  qad;
+				Quiz ans = quiz.get();
+				QuizAnswerDto qadt=new QuizAnswerDto();
+				qad.setQuestion(ans.getQuestion());
+				qad.setOptions(ans.getOptions());
+				qad.setAnswer(ans.getOptions().get(answer.getRightAnswerIndex()));
+				return  qadt;
 			}else{
-				throw  new QuizException("Please try after 5 munutes of the Quiz end ");
+				throw  new QuizException("Please try after 5 munutes of the Quiz end");
 			}
 		}else {
 			throw new QuizException("Invalid ID");
