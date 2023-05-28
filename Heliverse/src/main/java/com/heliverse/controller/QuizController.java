@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import com.heliverse.dto.QuizAnswerDto;
 import com.heliverse.entity.Quiz;
 import com.heliverse.exception.QuizException;
@@ -24,26 +25,26 @@ public class QuizController {
 
 	// POST controller method to create quiz
 	@PostMapping("/create")
-	public Quiz createQuizHandler(@RequestBody Quiz quiz) throws QuizException {
-		return quizService.createQuiz(quiz);
+	public ResponseEntity<Quiz> createQuizHandler(@RequestBody Quiz quiz) throws QuizException {
+		return new ResponseEntity<Quiz>(quizService.createQuiz(quiz), HttpStatus.CREATED) ;
 	}
 	
 	// GET controller method to find active quizzes which is started
 	@GetMapping("/active")
-	public List<Quiz> getActiveQuizHandler() throws QuizException {
-		return quizService.getActiveQuiz();
+	public ResponseEntity<List<Quiz>> getActiveQuizHandler() throws QuizException {
+		return new ResponseEntity<List<Quiz>>( quizService.getActiveQuiz(),HttpStatus.OK);
 	}
 	
 	// controller method to find result by id
 	@GetMapping("/{id}/result")
-	public QuizAnswerDto getQuizResultHandler(@PathVariable Long id) throws QuizException {
-		return quizService.getQuizResult(id);
+	public ResponseEntity<QuizAnswerDto> getQuizResultHandler(@PathVariable Long id) throws QuizException {
+		return new ResponseEntity<QuizAnswerDto>( quizService.getQuizResult(id),HttpStatus.OK);
 	}
 	
 	// controller method to find all quizzes
 	@GetMapping("/all")
-	public List<Quiz> getAllQuizzesHandler() throws QuizException {
-		return quizService.getAllQuizzes();
+	public ResponseEntity<List<Quiz>> getAllQuizzesHandler() throws QuizException {
+		return new ResponseEntity<List<Quiz>>( quizService.getAllQuizzes(),HttpStatus.OK);
 	}
 
 }
